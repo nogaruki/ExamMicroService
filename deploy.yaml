@@ -1,0 +1,99 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: eurekaserver
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: eurekaserver
+  template:
+    metadata:
+      labels:
+        app: eurekaserver
+    spec:
+      containers:
+        - name: eurekaserver
+          image: eurekaserver:0.0.1
+          ports:
+            - containerPort: 8761
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: teamservice
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: teamservice
+  template:
+    metadata:
+      labels:
+        app: teamservice
+    spec:
+      containers:
+        - name: teamservice
+          image: teamservice:0.0.1
+          ports:
+            - containerPort: 8081
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: playerservice
+spec:
+    replicas: 1
+    selector:
+      matchLabels:
+        app: playerservice
+    template:
+      metadata:
+        labels:
+            app: playerservice
+      spec:
+        containers:
+          - name: playerservice
+            image: playerservice:0.0.1
+            ports:
+                - containerPort: 8082
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: matchservice
+spec:
+    replicas: 1
+    selector:
+      matchLabels:
+        app: matchservice
+    template:
+      metadata:
+        labels:
+            app: matchservice
+      spec:
+        containers:
+          - name: matchservice
+            image: matchservice:0.0.1
+            ports:
+                - containerPort: 8083
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: statsservice
+spec:
+    replicas: 1
+    selector:
+      matchLabels:
+        app: statsservice
+    template:
+      metadata:
+        labels:
+            app: statsservice
+      spec:
+        containers:
+          - name: statsservice
+            image: statsservice:0.0.1
+            ports:
+                - containerPort: 8084
